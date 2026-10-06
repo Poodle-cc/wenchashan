@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>问茶山</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #2d4a2b 0%, #4a6b3a 50%, #7a9456 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.96);
+    border-radius: 20px;
+    padding: 36px 28px 30px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .cover {
+    width: 160px; height: 160px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #a6b770, #4a6b3a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px;
+    box-shadow: 0 8px 24px rgba(45,74,43,0.35);
+    animation: spin 18s linear infinite;
+    animation-play-state: paused;
+  }
+  .card.playing .cover { animation-play-state: running; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  h1 { font-size: 24px; color: #2d4a2b; margin-bottom: 6px; }
+  p { font-size: 14px; color: #8a9480; margin-bottom: 26px; }
+  audio {
+    width: 100%;
+    margin-bottom: 18px;
+  }
+  a.dl {
+    display: inline-block;
+    font-size: 14px;
+    color: #4a6b3a;
+    text-decoration: none;
+    border: 1px solid #b8c49a;
+    border-radius: 999px;
+    padding: 10px 26px;
+  }
+  a.dl:active { background: #eef2e2; }
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="cover">🍵</div>
+    <h1>问茶山</h1>
+    <p>在线试听</p>
+    <audio id="player" controls preload="metadata" playsinline webkitplaysinline x5-playsinline>
+      <source src="wenchashan.mp3" type="audio/mpeg">
+      您的浏览器不支持音频播放，请点击下方链接下载。
+    </audio>
+    <br>
+    <a class="dl" href="wenchashan.mp3" download="问茶山.mp3">下载 MP3</a>
+  </div>
+<script>
+  var p = document.getElementById('player'), card = document.getElementById('card');
+  p.addEventListener('play', function(){ card.classList.add('playing'); });
+  p.addEventListener('pause', function(){ card.classList.remove('playing'); });
+</script>
+</body>
+</html>
